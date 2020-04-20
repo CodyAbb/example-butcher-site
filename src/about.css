@@ -1,0 +1,27 @@
+.team-header {
+  justify-self: start;
+}
+
+.card-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  margin-bottom: 2em;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  justify-self: center;
+}
+
+.card img {
+  width: 100%;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+  margin-bottom: 3em;
+}

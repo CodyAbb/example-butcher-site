@@ -62,16 +62,75 @@ a {
 }
 
 .business-heading {
-  margin: 0;
+  margin-left: 0.2em;
+  margin-bottom: 0;
   font-weight: 700;
   font-size: 6em;
+  color: #111;
   grid-column-start: 1;
   grid-column-end: 2;
   justify-self: start;
   align-self: end;
+  text-align: start;
+}
+
+.home-information {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  display: grid;
+  /* grid-template-columns: (auto-fit, minmax(320px, 1fr 1fr 1fr)); */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "info opening"
+    "info opening"
+    "info contact";
+  column-gap: normal;
+}
+
+@media only screen and (max-width: 600px) {
+  .home-information {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-areas:
+      "info"
+      "opening"
+      "contact";
+    row-gap: 1em;
+  }
+}
+
+.opening-info {
+  grid-area: info;
+  line-height: 1.5;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: start;
+}
+
+.opening-times {
+  grid-area: opening;
+  justify-self: center;
+  align-self: center;
+}
+
+.contact-info {
+  grid-area: contact;
+  justify-self: center;
+  align-self: center;
+}
+
+.opening-times th,
+td {
+  padding: 5px 5px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#intro-para {
+  font-weight: normal;
+  font-size: 1.5em;
 }
