@@ -1,0 +1,93 @@
+.grid-container {
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.scrollable-products {
+  justify-self: center;
+  width: 800px;
+  height: 800px;
+  overflow-y: auto;
+  background-color: #fdf1ec;
+}
+
+.product-card {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  border-radius: 7px 7px 7px 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  height: 380px;
+  width: 754px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2fr;
+
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "title blurb"
+    "photo blurb"
+    "photo price"
+    "photo purchase";
+}
+
+.product-title {
+  grid-area: title;
+  justify-self: start;
+  padding-left: 1em;
+  align-self: start;
+  font-size: 2em;
+  color: #474747;
+  text-transform: uppercase;
+  font-family: "Raleway", serif;
+}
+
+.product-picture {
+  grid-area: photo;
+  align-self: end;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px 0px 0px 7px;
+  height: 310px;
+  width: 390px;
+}
+
+.product-blurb {
+  grid-area: blurb;
+  padding: 1em 1rem 0 1rem;
+  align-self: start;
+  font-family: Raleway;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.product-price {
+  grid-area: price;
+  align-self: end;
+  color: grey;
+  font-size: 22px;
+}
+
+.add-button {
+  grid-area: purchase;
+  border: 7px 7px 7px 7px;
+  border: transparent;
+  border-radius: 60px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  background-color: #474747;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  opacity: 0.7;
+}

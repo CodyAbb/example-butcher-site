@@ -65,6 +65,7 @@ a {
   margin-left: 0.2em;
   margin-bottom: 0;
   font-weight: 700;
+  font-family: Bentham;
   font-size: 6em;
   color: #111;
   grid-column-start: 1;
@@ -106,6 +107,7 @@ a {
   padding-left: 1em;
   padding-right: 1em;
   text-align: start;
+  font-family: Raleway;
 }
 
 .opening-times {
