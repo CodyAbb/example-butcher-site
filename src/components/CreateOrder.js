@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import meatExample from "../imgs/meat_product.jpg";
 import "../createorder.css";
 
 export default function CreateOrder() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/products")
+      .then((res) => res.json())
+      .then((result) => result["_embedded"])
+      .then((embedded) => setProducts(embedded.products));
+  }, []);
+
   return (
     <>
       <div className="grid-container">
