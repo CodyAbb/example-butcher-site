@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import meatExample from "../imgs/meat_product.jpg";
+
 import "../createorder.css";
+import ProductCard from "./ProductCard";
 
 export default function CreateOrder() {
   const [products, setProducts] = useState([]);
+  const [basket, setBasket] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
@@ -16,68 +18,10 @@ export default function CreateOrder() {
     <>
       <div className="grid-container">
         <div className="scrollable-products">
-          <div className="product-card">
-            <h1 className="product-title">Piece of Meat</h1>
-
-            <img
-              className="product-picture"
-              src={meatExample}
-              alt="Meat Joint"
-            />
-
-            <p className="product-blurb">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              suscipit ultrices tristique. Cras placerat posuere vehicula.
-              Aliquam eget dignissim quam, sed tempus massa. Cras placerat
-              posuere vehicula. Aliquam eget dignissim quam, sed tempus massa.
-            </p>
-            <p className="product-price">£10.99</p>
-            <p>
-              <button className="add-button">Add to Cart</button>
-            </p>
-          </div>
-
-          <div className="product-card">
-            <h1 className="product-title">Piece of Meat</h1>
-
-            <img
-              className="product-picture"
-              src={meatExample}
-              alt="Meat Joint"
-            />
-
-            <p className="product-blurb">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              suscipit ultrices tristique. Cras placerat posuere vehicula.
-              Aliquam eget dignissim quam, sed tempus massa. Cras placerat
-              posuere vehicula. Aliquam eget dignissim quam, sed tempus massa.
-            </p>
-            <p className="product-price">£10.99</p>
-            <p>
-              <button className="add-button">Add to Cart</button>
-            </p>
-          </div>
-
-          <div className="product-card">
-            <h1 className="product-title">Piece of Meat</h1>
-
-            <img
-              className="product-picture"
-              src={meatExample}
-              alt="Meat Joint"
-            />
-
-            <p className="product-blurb">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              suscipit ultrices tristique. Cras placerat posuere vehicula.
-              Aliquam eget dignissim quam, sed tempus massa. Cras placerat
-              posuere vehicula. Aliquam eget dignissim quam, sed tempus massa.
-            </p>
-            <p className="product-price">£10.99</p>
-            <p>
-              <button className="add-button">Add to Cart</button>
-            </p>
-          </div>
+          {products &&
+            products.map((product) => {
+              return <ProductCard product={product} />;
+            })}
         </div>
 
         {/* checkout section */}
