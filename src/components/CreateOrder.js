@@ -18,24 +18,56 @@ export default function CreateOrder() {
       .then((embedded) => setProducts(embedded.products));
   }, []);
 
+  const addToCart = (name, amount) => {
+    const productToBeAdded = { productName: name, productAmount: amount };
+    setBasket((basket) => [...basket, productToBeAdded]);
+  };
+
+  const basketNotEmpty =
+    basket.length > 0 ? (
+      <div className="basket-container">
+        <IconButton aria-label="cart">
+          <StyledBadge badgeContent={basket.length} color="secondary">
+            <ShoppingCartIcon style={{ fontSize: 40 }} />
+          </StyledBadge>
+        </IconButton>
+        <ul>
+          {basket.map((basketProduct) => {
+            return (
+              <li>
+                {basketProduct.productName}: {basketProduct.productAmount}
+              </li>
+            );
+          })}
+        </ul>
+        <p>
+          <button className="checkout-button">
+            Proceed To Checkout <ShoppingCartIcon />{" "}
+          </button>
+        </p>
+      </div>
+    ) : (
+      <div className="empty-basket">
+        <IconButton aria-label="cart">
+          <StyledBadge badgeContent={basket.length} color="secondary">
+            <ShoppingCartIcon style={{ fontSize: 40 }} />
+          </StyledBadge>
+        </IconButton>
+      </div>
+    );
+
   return (
     <>
       <div className="grid-container">
         <div className="scrollable-products">
           {products &&
             products.map((product) => {
-              return <ProductCard product={product} />;
+              return <ProductCard product={product} addToCart={addToCart} />;
             })}
         </div>
 
         {/* checkout section */}
-        <div className="basket-container">
-          <IconButton aria-label="cart">
-            <StyledBadge badgeContent={4} color="secondary">
-              <ShoppingCartIcon />
-            </StyledBadge>
-          </IconButton>
-        </div>
+        {basketNotEmpty}
       </div>
     </>
   );

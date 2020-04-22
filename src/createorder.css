@@ -73,6 +73,7 @@
 
 .add-button {
   grid-area: purchase;
+  padding: 1em;
   border: 7px 7px 7px 7px;
   border: transparent;
   border-radius: 60px;
@@ -87,5 +88,38 @@
 }
 
 .product-card button:hover {
+  opacity: 0.7;
+}
+
+/* shopping basket */
+
+.empty-basket {
+  align-self: center;
+}
+
+.basket-container {
+  align-self: center;
+  border-radius: 7px 7px 7px 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  transition: 0.6s linear;
+}
+
+.checkout-button {
+  grid-area: purchase;
+  border: 7px 7px 7px 7px;
+  border: transparent;
+  padding: 2em;
+  border-radius: 60px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  background-color: #474747;
+  cursor: pointer;
+}
+.checkout-button:hover {
   opacity: 0.7;
 }
