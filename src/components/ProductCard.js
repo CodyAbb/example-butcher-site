@@ -15,7 +15,7 @@ export default function ProductCard({ product, addToCart }) {
         <button
           className="add-button"
           onClick={() => {
-            addToCart(product.name, product.amount);
+            addToCart(product.name, product.amount, product.id);
           }}
         >
           Add to Cart

@@ -18,9 +18,22 @@ export default function CreateOrder() {
       .then((embedded) => setProducts(embedded.products));
   }, []);
 
-  const addToCart = (name, amount) => {
-    const productToBeAdded = { productName: name, productAmount: amount };
+  const addToCart = (name, amount, id) => {
+    const productToBeAdded = {
+      productName: name,
+      productAmount: amount,
+      productId: id,
+      quantity: 1,
+    };
     setBasket((basket) => [...basket, productToBeAdded]);
+  };
+
+  const increaseByOne = (searchId) => {
+    for (const basketProduct of basket) {
+      if (basketProduct.productId === searchId) {
+        basketProduct.quantity += 1;
+      }
+    }
   };
 
   const basketNotEmpty =
@@ -35,7 +48,11 @@ export default function CreateOrder() {
           {basket.map((basketProduct) => {
             return (
               <li>
-                {basketProduct.productName}: {basketProduct.productAmount}
+                {basketProduct.productName}: {basketProduct.productAmount}{" "}
+                {basketProduct.quantity}{" "}
+                <button onClick={increaseByOne(basketProduct.productId)}>
+                  +
+                </button>
               </li>
             );
           })}
@@ -62,7 +79,13 @@ export default function CreateOrder() {
         <div className="scrollable-products">
           {products &&
             products.map((product) => {
-              return <ProductCard product={product} addToCart={addToCart} />;
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  addToCart={addToCart}
+                />
+              );
             })}
         </div>
 
