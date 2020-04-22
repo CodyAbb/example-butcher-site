@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import "../createorder.css";
 import ProductCard from "./ProductCard";
+import Badge from "@material-ui/core/Badge";
+import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import "../createorder.css";
 
 export default function CreateOrder() {
   const [products, setProducts] = useState([]);
@@ -26,9 +30,22 @@ export default function CreateOrder() {
 
         {/* checkout section */}
         <div className="basket-container">
-          <p>Basket placeholder</p>
+          <IconButton aria-label="cart">
+            <StyledBadge badgeContent={4} color="secondary">
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
         </div>
       </div>
     </>
   );
 }
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}))(Badge);
