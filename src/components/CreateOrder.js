@@ -68,6 +68,18 @@ export default function CreateOrder() {
     setBasket(prevBasket);
   };
 
+  const removeFromBasket = (searchId) => {
+    let prevBasket = [...basket];
+
+    let indexOfUpdatedProduct = prevBasket.findIndex(
+      (product) => product.productId === searchId
+    );
+
+    prevBasket.splice(indexOfUpdatedProduct, 1);
+
+    setBasket(prevBasket);
+  };
+
   const basketNotEmpty =
     basket.length > 0 ? (
       <div className="basket-container">
@@ -80,6 +92,13 @@ export default function CreateOrder() {
           {basket.map((basketProduct) => {
             return (
               <li>
+                <button
+                  onClick={() => {
+                    removeFromBasket(basketProduct.productId);
+                  }}
+                >
+                  x
+                </button>
                 {basketProduct.productName}: {basketProduct.productAmount}{" "}
                 {basketProduct.quantity}{" "}
                 <button
