@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import CheckIcon from "@material-ui/icons/Check";
 import "../createorder.css";
 import meatExample from "../imgs/meat_product.jpg";
 
-export default function ProductCard({ product, addToCart }) {
+export default function ProductCard({ product, addToCart, hasBeenAdded }) {
+  // const productAdded = hasBeenAdded ? (
+  //   <p>
+  //     <CheckIcon />
+  //   </p>
+  // ) : (
+
+  // );
+
   return (
     <div className="product-card">
       <h1 className="product-title">{product.name}</h1>

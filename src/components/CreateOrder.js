@@ -10,6 +10,7 @@ import "../createorder.css";
 export default function CreateOrder() {
   const [products, setProducts] = useState([]);
   const [basket, setBasket] = useState([]);
+  const [hasBeenAdded, setHasBeenAdded] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
@@ -26,14 +27,45 @@ export default function CreateOrder() {
       quantity: 1,
     };
     setBasket((basket) => [...basket, productToBeAdded]);
+    // setHasBeenAdded(true);
   };
 
   const increaseByOne = (searchId) => {
-    for (const basketProduct of basket) {
-      if (basketProduct.productId === searchId) {
-        basketProduct.quantity += 1;
-      }
+    let prevBasket = [...basket];
+
+    let indexOfUpdatedProduct = prevBasket.findIndex(
+      (product) => product.productId === searchId
+    );
+
+    let productToBeChanged = {
+      ...prevBasket[indexOfUpdatedProduct],
+    };
+
+    productToBeChanged.quantity = productToBeChanged.quantity += 1;
+
+    prevBasket[indexOfUpdatedProduct] = productToBeChanged;
+
+    setBasket(prevBasket);
+  };
+
+  const decreaseByOne = (searchId) => {
+    let prevBasket = [...basket];
+
+    let indexOfUpdatedProduct = prevBasket.findIndex(
+      (product) => product.productId === searchId
+    );
+
+    let productToBeChanged = {
+      ...prevBasket[indexOfUpdatedProduct],
+    };
+
+    productToBeChanged.quantity = productToBeChanged.quantity -= 1;
+
+    if (productToBeChanged.quantity > 0) {
+      prevBasket[indexOfUpdatedProduct] = productToBeChanged;
     }
+
+    setBasket(prevBasket);
   };
 
   const basketNotEmpty =
@@ -50,8 +82,20 @@ export default function CreateOrder() {
               <li>
                 {basketProduct.productName}: {basketProduct.productAmount}{" "}
                 {basketProduct.quantity}{" "}
-                <button onClick={increaseByOne(basketProduct.productId)}>
+                <button
+                  onClick={() => {
+                    increaseByOne(basketProduct.productId);
+                  }}
+                >
                   +
+                </button>
+                |
+                <button
+                  onClick={() => {
+                    decreaseByOne(basketProduct.productId);
+                  }}
+                >
+                  -
                 </button>
               </li>
             );
@@ -84,6 +128,7 @@ export default function CreateOrder() {
                   key={product.id}
                   product={product}
                   addToCart={addToCart}
+                  hasBeenAdded={hasBeenAdded}
                 />
               );
             })}
