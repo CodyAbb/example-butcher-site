@@ -94,18 +94,17 @@ export default function CreateOrder() {
 
   const changeButton = (searchId) => {
     let prevProducts = [...products];
+    // console.log(prevProducts);
+    // console.log(searchId);
     let indexOfUpdatedProduct = prevProducts.findIndex(
-      (product) => product.productId === searchId
+      (product) => product.id == searchId
     );
-    let productToBeChanged = {
-      ...prevProducts[indexOfUpdatedProduct],
-    };
-    productToBeChanged.addToBasket = !productToBeChanged.addToBasket;
+
+    let productToBeChanged = prevProducts[indexOfUpdatedProduct];
+    productToBeChanged.addedToBasket = !productToBeChanged.addedToBasket;
 
     prevProducts[indexOfUpdatedProduct] = productToBeChanged;
-
-    setBasket(prevProducts);
-    // product.addedToBasket = !product.addedToBasket;
+    setProducts(prevProducts);
   };
 
   const priceFormatting = (price) => {
@@ -138,7 +137,7 @@ export default function CreateOrder() {
                 <button
                   onClick={() => {
                     removeFromBasket(basketProduct.productId);
-                    // changeButton(basketProduct.productId);
+                    changeButton(basketProduct.productId);
                   }}
                 >
                   x

@@ -19,7 +19,7 @@ export default function ProductCard({
         className="add-button"
         onClick={() => {
           addToCart(product);
-          // changeButton(product.id);
+          changeButton(product.id);
         }}
       >
         Add to Cart
