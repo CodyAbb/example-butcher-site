@@ -12,6 +12,7 @@ export default function CreateOrder() {
   const [basket, setBasket] = useState([]);
   const [hasBeenAdded, setHasBeenAdded] = useState(false);
   const [productQuantities, setProductQuantities] = useState(0);
+  const [totalAmount, setTotalAmount] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
@@ -19,6 +20,24 @@ export default function CreateOrder() {
       .then((result) => result["_embedded"])
       .then((embedded) => setProducts(embedded.products));
   }, []);
+
+  useEffect(() => {
+    let newQuantity = 0;
+    for (let product of basket) {
+      newQuantity += product.quantity;
+    }
+
+    setProductQuantities(newQuantity);
+  }, [basket]);
+
+  useEffect(() => {
+    let totalCost = 0;
+    for (let product of basket) {
+      totalCost += product.productAmount * product.quantity;
+    }
+    const stringConversion = priceFormatting(totalCost);
+    setTotalAmount(stringConversion);
+  }, [basket]);
 
   const addToCart = (product) => {
     const productToBeAdded = {
@@ -104,23 +123,11 @@ export default function CreateOrder() {
   //   setProductQuantities(newQuantity);
   // };
 
-  useEffect(() => {
-    let newQuantity = 0;
-    for (let product of basket) {
-      newQuantity += product.quantity;
-    }
-    // console.log(productQuantities);
-
-    setProductQuantities(newQuantity);
-  }, [basket]);
-
-  console.log(productQuantities);
-
   const basketNotEmpty =
     basket.length > 0 ? (
       <div className="basket-container">
         <IconButton aria-label="cart">
-          <StyledBadge badgeContent={basket.length} color="secondary">
+          <StyledBadge badgeContent={productQuantities} color="secondary">
             <ShoppingCartIcon style={{ fontSize: 40 }} />
           </StyledBadge>
         </IconButton>
@@ -158,7 +165,7 @@ export default function CreateOrder() {
             );
           })}
         </ul>
-        <p>Total: </p>
+        <p>Total: {totalAmount}</p>
         <p>
           <button className="checkout-button">
             Proceed To Checkout <ShoppingCartIcon />{" "}
