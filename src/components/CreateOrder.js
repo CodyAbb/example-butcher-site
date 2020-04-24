@@ -11,6 +11,7 @@ export default function CreateOrder() {
   const [products, setProducts] = useState([]);
   const [basket, setBasket] = useState([]);
   const [hasBeenAdded, setHasBeenAdded] = useState(false);
+  const [productQuantities, setProductQuantities] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
@@ -19,46 +20,39 @@ export default function CreateOrder() {
       .then((embedded) => setProducts(embedded.products));
   }, []);
 
-  const addToCart = (name, amount, id) => {
+  const addToCart = (product) => {
     const productToBeAdded = {
-      productName: name,
-      productAmount: amount,
-      productId: id,
+      productName: product.name,
+      productAmount: product.amount,
+      productId: product.id,
       quantity: 1,
     };
     setBasket((basket) => [...basket, productToBeAdded]);
-    // setHasBeenAdded(true);
+    // numOfProductsInBasket();
   };
 
   const increaseByOne = (searchId) => {
     let prevBasket = [...basket];
-
     let indexOfUpdatedProduct = prevBasket.findIndex(
       (product) => product.productId === searchId
     );
-
     let productToBeChanged = {
       ...prevBasket[indexOfUpdatedProduct],
     };
-
     productToBeChanged.quantity = productToBeChanged.quantity += 1;
-
     prevBasket[indexOfUpdatedProduct] = productToBeChanged;
-
     setBasket(prevBasket);
+    // numOfProductsInBasket();
   };
 
   const decreaseByOne = (searchId) => {
     let prevBasket = [...basket];
-
     let indexOfUpdatedProduct = prevBasket.findIndex(
       (product) => product.productId === searchId
     );
-
     let productToBeChanged = {
       ...prevBasket[indexOfUpdatedProduct],
     };
-
     productToBeChanged.quantity = productToBeChanged.quantity -= 1;
 
     if (productToBeChanged.quantity > 0) {
@@ -66,19 +60,61 @@ export default function CreateOrder() {
     }
 
     setBasket(prevBasket);
+    // numOfProductsInBasket();
   };
 
   const removeFromBasket = (searchId) => {
     let prevBasket = [...basket];
-
     let indexOfUpdatedProduct = prevBasket.findIndex(
       (product) => product.productId === searchId
     );
-
     prevBasket.splice(indexOfUpdatedProduct, 1);
-
     setBasket(prevBasket);
+    // numOfProductsInBasket();
   };
+
+  const changeButton = (searchId) => {
+    let prevProducts = [...products];
+    let indexOfUpdatedProduct = prevProducts.findIndex(
+      (product) => product.productId === searchId
+    );
+    let productToBeChanged = {
+      ...prevProducts[indexOfUpdatedProduct],
+    };
+    productToBeChanged.addToBasket = !productToBeChanged.addToBasket;
+
+    prevProducts[indexOfUpdatedProduct] = productToBeChanged;
+
+    setBasket(prevProducts);
+    // product.addedToBasket = !product.addedToBasket;
+  };
+
+  const priceFormatting = (price) => {
+    let calculatedPrice = (price / 100).toFixed(2);
+    return `£${calculatedPrice}`;
+  };
+
+  // const numOfProductsInBasket = () => {
+  //   let newQuantity = 0;
+  //   for (let product of basket) {
+  //     newQuantity += product.quantity;
+  //   }
+  //   console.log(productQuantities);
+
+  //   setProductQuantities(newQuantity);
+  // };
+
+  useEffect(() => {
+    let newQuantity = 0;
+    for (let product of basket) {
+      newQuantity += product.quantity;
+    }
+    // console.log(productQuantities);
+
+    setProductQuantities(newQuantity);
+  }, [basket]);
+
+  console.log(productQuantities);
 
   const basketNotEmpty =
     basket.length > 0 ? (
@@ -95,11 +131,13 @@ export default function CreateOrder() {
                 <button
                   onClick={() => {
                     removeFromBasket(basketProduct.productId);
+                    // changeButton(basketProduct.productId);
                   }}
                 >
                   x
                 </button>
-                {basketProduct.productName}: {basketProduct.productAmount}{" "}
+                {basketProduct.productName}:{" "}
+                {priceFormatting(basketProduct.productAmount)}{" "}
                 {basketProduct.quantity}{" "}
                 <button
                   onClick={() => {
@@ -120,6 +158,7 @@ export default function CreateOrder() {
             );
           })}
         </ul>
+        <p>Total: </p>
         <p>
           <button className="checkout-button">
             Proceed To Checkout <ShoppingCartIcon />{" "}
@@ -129,7 +168,7 @@ export default function CreateOrder() {
     ) : (
       <div className="empty-basket">
         <IconButton aria-label="cart">
-          <StyledBadge badgeContent={basket.length} color="secondary">
+          <StyledBadge badgeContent={productQuantities} color="secondary">
             <ShoppingCartIcon style={{ fontSize: 40 }} />
           </StyledBadge>
         </IconButton>
@@ -146,8 +185,9 @@ export default function CreateOrder() {
                 <ProductCard
                   key={product.id}
                   product={product}
+                  priceFormatting={priceFormatting}
                   addToCart={addToCart}
-                  hasBeenAdded={hasBeenAdded}
+                  changeButton={changeButton}
                 />
               );
             })}
