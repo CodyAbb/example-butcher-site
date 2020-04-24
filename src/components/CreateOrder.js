@@ -10,7 +10,6 @@ import "../createorder.css";
 export default function CreateOrder() {
   const [products, setProducts] = useState([]);
   const [basket, setBasket] = useState([]);
-  const [hasBeenAdded, setHasBeenAdded] = useState(false);
   const [productQuantities, setProductQuantities] = useState(0);
   const [totalAmount, setTotalAmount] = useState("");
 
@@ -26,7 +25,6 @@ export default function CreateOrder() {
     for (let product of basket) {
       newQuantity += product.quantity;
     }
-
     setProductQuantities(newQuantity);
   }, [basket]);
 
@@ -47,7 +45,6 @@ export default function CreateOrder() {
       quantity: 1,
     };
     setBasket((basket) => [...basket, productToBeAdded]);
-    // numOfProductsInBasket();
   };
 
   const increaseByOne = (searchId) => {
@@ -61,7 +58,6 @@ export default function CreateOrder() {
     productToBeChanged.quantity = productToBeChanged.quantity += 1;
     prevBasket[indexOfUpdatedProduct] = productToBeChanged;
     setBasket(prevBasket);
-    // numOfProductsInBasket();
   };
 
   const decreaseByOne = (searchId) => {
@@ -79,7 +75,6 @@ export default function CreateOrder() {
     }
 
     setBasket(prevBasket);
-    // numOfProductsInBasket();
   };
 
   const removeFromBasket = (searchId) => {
@@ -89,15 +84,12 @@ export default function CreateOrder() {
     );
     prevBasket.splice(indexOfUpdatedProduct, 1);
     setBasket(prevBasket);
-    // numOfProductsInBasket();
   };
 
   const changeButton = (searchId) => {
     let prevProducts = [...products];
-    // console.log(prevProducts);
-    // console.log(searchId);
     let indexOfUpdatedProduct = prevProducts.findIndex(
-      (product) => product.id == searchId
+      (product) => product.id === searchId
     );
 
     let productToBeChanged = prevProducts[indexOfUpdatedProduct];
@@ -111,16 +103,6 @@ export default function CreateOrder() {
     let calculatedPrice = (price / 100).toFixed(2);
     return `£${calculatedPrice}`;
   };
-
-  // const numOfProductsInBasket = () => {
-  //   let newQuantity = 0;
-  //   for (let product of basket) {
-  //     newQuantity += product.quantity;
-  //   }
-  //   console.log(productQuantities);
-
-  //   setProductQuantities(newQuantity);
-  // };
 
   const basketNotEmpty =
     basket.length > 0 ? (
@@ -206,6 +188,7 @@ export default function CreateOrder() {
   );
 }
 
+// Styling
 const StyledBadge = withStyles((theme) => ({
   badge: {
     right: -3,
