@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/http//CodyAbb.github.io/example-butcher-site/static/css/main.d435180b.chunk.css",
-    "main.js": "/http//CodyAbb.github.io/example-butcher-site/static/js/main.cc1dc373.chunk.js",
-    "main.js.map": "/http//CodyAbb.github.io/example-butcher-site/static/js/main.cc1dc373.chunk.js.map",
-    "runtime-main.js": "/http//CodyAbb.github.io/example-butcher-site/static/js/runtime-main.7c7919af.js",
-    "runtime-main.js.map": "/http//CodyAbb.github.io/example-butcher-site/static/js/runtime-main.7c7919af.js.map",
-    "static/js/2.fe7b2f54.chunk.js": "/http//CodyAbb.github.io/example-butcher-site/static/js/2.fe7b2f54.chunk.js",
-    "static/js/2.fe7b2f54.chunk.js.map": "/http//CodyAbb.github.io/example-butcher-site/static/js/2.fe7b2f54.chunk.js.map",
-    "index.html": "/http//CodyAbb.github.io/example-butcher-site/index.html",
-    "precache-manifest.15de9cf3c2c50aa52c5918be32f05ce3.js": "/http//CodyAbb.github.io/example-butcher-site/precache-manifest.15de9cf3c2c50aa52c5918be32f05ce3.js",
-    "service-worker.js": "/http//CodyAbb.github.io/example-butcher-site/service-worker.js",
-    "static/css/main.d435180b.chunk.css.map": "/http//CodyAbb.github.io/example-butcher-site/static/css/main.d435180b.chunk.css.map",
-    "static/js/2.fe7b2f54.chunk.js.LICENSE.txt": "/http//CodyAbb.github.io/example-butcher-site/static/js/2.fe7b2f54.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/http//CodyAbb.github.io/example-butcher-site/static/media/butcher_photo.98db1f37.jpg",
-    "static/media/butcher_portrait_1.jpg": "/http//CodyAbb.github.io/example-butcher-site/static/media/butcher_portrait_1.0484f902.jpg",
-    "static/media/butcher_portrait_2.jpg": "/http//CodyAbb.github.io/example-butcher-site/static/media/butcher_portrait_2.fc5eb0a6.jpg",
-    "static/media/butcher_portrait_3.jpg": "/http//CodyAbb.github.io/example-butcher-site/static/media/butcher_portrait_3.95389a14.jpg",
-    "static/media/meat_product.jpg": "/http//CodyAbb.github.io/example-butcher-site/static/media/meat_product.8a24ecfe.jpg"
+    "main.css": "/example-butcher-site/static/css/main.a0970e76.chunk.css",
+    "main.js": "/example-butcher-site/static/js/main.4f93312b.chunk.js",
+    "main.js.map": "/example-butcher-site/static/js/main.4f93312b.chunk.js.map",
+    "runtime-main.js": "/example-butcher-site/static/js/runtime-main.ad068c58.js",
+    "runtime-main.js.map": "/example-butcher-site/static/js/runtime-main.ad068c58.js.map",
+    "static/js/2.fe7b2f54.chunk.js": "/example-butcher-site/static/js/2.fe7b2f54.chunk.js",
+    "static/js/2.fe7b2f54.chunk.js.map": "/example-butcher-site/static/js/2.fe7b2f54.chunk.js.map",
+    "index.html": "/example-butcher-site/index.html",
+    "precache-manifest.04bc23825cc36409a3ea13dc3d583dd3.js": "/example-butcher-site/precache-manifest.04bc23825cc36409a3ea13dc3d583dd3.js",
+    "service-worker.js": "/example-butcher-site/service-worker.js",
+    "static/css/main.a0970e76.chunk.css.map": "/example-butcher-site/static/css/main.a0970e76.chunk.css.map",
+    "static/js/2.fe7b2f54.chunk.js.LICENSE.txt": "/example-butcher-site/static/js/2.fe7b2f54.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/example-butcher-site/static/media/butcher_photo.98db1f37.jpg",
+    "static/media/butcher_portrait_1.jpg": "/example-butcher-site/static/media/butcher_portrait_1.0484f902.jpg",
+    "static/media/butcher_portrait_2.jpg": "/example-butcher-site/static/media/butcher_portrait_2.fc5eb0a6.jpg",
+    "static/media/butcher_portrait_3.jpg": "/example-butcher-site/static/media/butcher_portrait_3.95389a14.jpg",
+    "static/media/meat_product.jpg": "/example-butcher-site/static/media/meat_product.8a24ecfe.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7c7919af.js",
+    "static/js/runtime-main.ad068c58.js",
     "static/js/2.fe7b2f54.chunk.js",
-    "static/css/main.d435180b.chunk.css",
-    "static/js/main.cc1dc373.chunk.js"
+    "static/css/main.a0970e76.chunk.css",
+    "static/js/main.4f93312b.chunk.js"
   ]
 }
