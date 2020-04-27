@@ -5,6 +5,9 @@ import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import ClearIcon from "@material-ui/icons/Clear";
 import "../createorder.css";
 
 export default function CreateOrder() {
@@ -115,33 +118,36 @@ export default function CreateOrder() {
         <ul>
           {basket.map((basketProduct) => {
             return (
-              <li>
+              <li className="basket-product">
                 <button
                   onClick={() => {
                     removeFromBasket(basketProduct.productId);
                     changeButton(basketProduct.productId);
                   }}
                 >
-                  x
+                  <ClearIcon />
                 </button>
                 {basketProduct.productName}:{" "}
-                {priceFormatting(basketProduct.productAmount)}{" "}
-                {basketProduct.quantity}{" "}
-                <button
-                  onClick={() => {
-                    increaseByOne(basketProduct.productId);
-                  }}
-                >
-                  +
-                </button>
-                |
-                <button
-                  onClick={() => {
-                    decreaseByOne(basketProduct.productId);
-                  }}
-                >
-                  -
-                </button>
+                {priceFormatting(basketProduct.productAmount)}
+                <div className="quantity-changes">
+                  <button
+                    onClick={() => {
+                      decreaseByOne(basketProduct.productId);
+                    }}
+                  >
+                    <RemoveIcon />
+                  </button>
+                  <span className="product-counter">
+                    {basketProduct.quantity}
+                  </span>
+                  <button
+                    onClick={() => {
+                      increaseByOne(basketProduct.productId);
+                    }}
+                  >
+                    <AddIcon />
+                  </button>
+                </div>
               </li>
             );
           })}
