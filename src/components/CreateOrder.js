@@ -15,13 +15,21 @@ export default function CreateOrder() {
   const [basket, setBasket] = useState([]);
   const [productQuantities, setProductQuantities] = useState(0);
   const [totalAmount, setTotalAmount] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8080/products")
+    fetch("https://cryptic-depths-18334.herokuapp.com/products")
       .then((res) => res.json())
       .then((result) => result["_embedded"])
       .then((embedded) => setProducts(embedded.products));
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth <= 600) {
+      setIsMobile(true);
+    }
+  }, []);
+  const layoutOnMobile = isMobile ? "" : "scrollable-products";
 
   useEffect(() => {
     let newQuantity = 0;
@@ -172,20 +180,20 @@ export default function CreateOrder() {
   return (
     <>
       <div className="grid-container">
-        {/* <div className="scrollable-products"> */}
-        {products &&
-          products.map((product) => {
-            return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                priceFormatting={priceFormatting}
-                addToCart={addToCart}
-                changeButton={changeButton}
-              />
-            );
-          })}
-        {/* </div> */}
+        <div className={layoutOnMobile}>
+          {products &&
+            products.map((product) => {
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  priceFormatting={priceFormatting}
+                  addToCart={addToCart}
+                  changeButton={changeButton}
+                />
+              );
+            })}
+        </div>
 
         {/* checkout section */}
         {basketNotEmpty}
