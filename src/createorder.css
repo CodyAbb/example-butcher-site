@@ -165,24 +165,25 @@
 /* Mobile Layout */
 @media only screen and (max-width: 600px) {
   .grid-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr;
     margin-top: 0;
-  }
-
-  .scrollable-products {
     justify-self: center;
     width: 100%;
     background-color: #fdf1ec;
   }
 
+  .scrollable-products {
+    display: none;
+  }
+
   .product-card {
-    margin: 1.5em;
+    margin-right: 0em;
     border-radius: 7px 7px 7px 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
     height: 680px;
-    width: 100%;
+    width: 93%;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr;
@@ -234,5 +235,9 @@
     align-self: end;
     color: grey;
     font-size: 22px;
+  }
+
+  .basket-container {
+    margin: 1em;
   }
 }

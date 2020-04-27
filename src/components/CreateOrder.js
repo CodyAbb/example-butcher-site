@@ -172,20 +172,20 @@ export default function CreateOrder() {
   return (
     <>
       <div className="grid-container">
-        <div className="scrollable-products">
-          {products &&
-            products.map((product) => {
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  priceFormatting={priceFormatting}
-                  addToCart={addToCart}
-                  changeButton={changeButton}
-                />
-              );
-            })}
-        </div>
+        {/* <div className="scrollable-products"> */}
+        {products &&
+          products.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                priceFormatting={priceFormatting}
+                addToCart={addToCart}
+                changeButton={changeButton}
+              />
+            );
+          })}
+        {/* </div> */}
 
         {/* checkout section */}
         {basketNotEmpty}
